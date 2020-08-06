@@ -23,4 +23,4 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         gem bump --skip-ci --push
-        gem release --verbose --key 121212121212
+        gem release --verbose --key 8c58e6918aab40d3c01b871a8a5173a2
