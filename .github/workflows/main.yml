@@ -1,4 +1,4 @@
-name: Build and Publish Ruby Gem on Tag Pushes
+name: release
 on:
   push:
     tags:
@@ -18,12 +18,15 @@ jobs:
     - uses: actions/setup-ruby@v1
       with: 
         ruby-version: '2.6'
+        
+    - id: get_version
+      uses: battila7/get-version-action@v2
 
     - name: Bump version      
       run: |
         gem install -N gem-release
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        gem bump --skip-ci --version ${{ github.event.release.tag_name }}
+        gem bump --skip-ci --version ${{ steps.get_version.outputs.version-without-v }}
         git push origin HEAD:master
         gem release --verbose --key 8c58e6918aab40d3c01b871a8a5173a2
