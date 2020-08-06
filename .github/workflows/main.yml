@@ -37,4 +37,4 @@ jobs:
         EOF
         chmod 0600 ~/.gem/credentials
         set -x
-        gem release --verbose
+        gem release
