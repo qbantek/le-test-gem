@@ -29,4 +29,12 @@ jobs:
         git config --local user.name "GitHub Action"
         gem bump --skip-ci --version ${{ steps.get_version.outputs.version-without-v }}
         git push origin HEAD:master
-        gem release --verbose --key 8c58e6918aab40d3c01b871a8a5173a2
+        set +x
+        mkdir -p ~/.gem
+        cat << EOF > ~/.gem/credentials
+        ---
+        :rubygems_api_key: 8c58e6918aab40d3c01b871a8a5173a2
+        EOF
+        chmod 0600 ~/.gem/credentials
+        set -x
+        gem release --verbose
