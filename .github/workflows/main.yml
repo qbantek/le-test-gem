@@ -17,10 +17,14 @@ jobs:
       with: 
         ruby-version: '2.6'
 
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
     - name: Bump version      
       run: |
         gem install -N gem-release
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        gem bump --skip-ci --push
+        gem bump --skip-ci --push --version ${{ steps.get_version.outputs.VERSION }}
         gem release --verbose --key 8c58e6918aab40d3c01b871a8a5173a2
