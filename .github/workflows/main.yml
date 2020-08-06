@@ -33,7 +33,7 @@ jobs:
         mkdir -p ~/.gem
         cat << EOF > ~/.gem/credentials
         ---
-        :rubygems_api_key: 8c58e6918aab40d3c01b871a8a5173a2
+        :rubygems_api_key: ${{secrets.RUBYGEMS_API_KEY}}
         EOF
         chmod 0600 ~/.gem/credentials
         set -x
