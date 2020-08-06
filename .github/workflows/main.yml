@@ -19,7 +19,7 @@ jobs:
 
     - name: Bump version      
       run: |
-        gem -N install gem-release
+        gem install -N gem-release
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         gem bump --skip-ci --push
